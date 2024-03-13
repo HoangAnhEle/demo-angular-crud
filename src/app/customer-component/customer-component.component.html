@@ -1,0 +1,42 @@
+<p-button label="Add" (click)="handleAddCustomer(customer)"></p-button>
+<input type="text" pInputText placeholder="Name" [(ngModel)]="customer.name" />
+<input type="text" pInputText placeholder="Age" [(ngModel)]="customer.age" />
+<input type="text" pInputText placeholder="Nationality" [(ngModel)]="customer.nationality" />
+<p-button label="Update" (click)="handleUpdateCustomer(customer)"></p-button>
+
+
+<p-table
+    [value]="listData"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5, 10, 20]"
+>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:25%">Name</th>
+            <th style="width:25%">Age</th>
+            <th style="width:25%">Nationality</th>
+            <th style="width:25%"></th>
+            <th style="width:25%"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.age }}</td>
+            <td>{{ item.nationality }}</td>
+            <td><p-button (click) ="handleShowInforToInput(item)" label="Edit"></p-button></td>
+            <td><p-button (click) = "handleDelete(item.id)" label="Delete"></p-button></td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-table>
+
